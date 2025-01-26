@@ -46,7 +46,7 @@ print(metadata_json)
 
 # Allow the user to input a key
 while True:
-    user_input = input("\nEnter a key to fetch its value (or type 'exit' to quit): ").strip()
+    user_input = input("\nEnter TEST!!!!!!! a key to fetch its value (or type 'exit' to quit): ").strip()
     if user_input.lower() == "exit":
         print("Exiting program.")
         break
