@@ -11,6 +11,7 @@ def getinstancemetadata():
     baseurl = "http://169.254.169.254/latest/meta-data/"
 
     def fetchmetadata(url, metadata=None):
+        print("fetchmetadata")
         if metadata is None:
             metadata = {}
 
