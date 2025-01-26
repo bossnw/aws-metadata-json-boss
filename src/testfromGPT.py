@@ -1,5 +1,5 @@
 import requests
-import json  # Ensure the JSON module is imported
+import json
 
 # Step 1: Get the token
 token_url = "http://169.254.169.254/latest/api/token"
@@ -20,24 +20,30 @@ headers_for_metadata = {"X-aws-ec2-metadata-token": token}
 try:
     metadata_response = requests.get(metadata_url, headers=headers_for_metadata, timeout=1)
     metadata_response.raise_for_status()
-    metadata = metadata_response.text  # Extract metadata content
+    metadata_paths = metadata_response.text.splitlines()  # Extract metadata paths as a list
 except requests.RequestException as e:
     print(f"Error fetching metadata: {e}")
     exit(1)
 
-# Step 3: Handle metadata
-print("Raw metadata response:")
-print(metadata)
+# Step 3: Fetch metadata values and convert to JSON
+metadata_dict = {}
 
-# If the metadata is JSON, parse it; otherwise, handle it as plain text
-try:
-    parsed_metadata = json.loads(metadata)
-    print("Parsed Metadata:")
-    print(parsed_metadata)
-except json.JSONDecodeError:
-    print("Metadata is not in JSON format. Displaying raw text:")
-    print(metadata)
+for path in metadata_paths:
+    try:
+        full_url = f"{metadata_url}/{path.rstrip('/')}"  # Remove trailing slashes for fetching
+        response = requests.get(full_url, headers=headers_for_metadata, timeout=1)
+        response.raise_for_status()
+        
+        # Add the response to the dictionary
+        metadata_dict[path] = response.text
+    except requests.RequestException as e:
+        metadata_dict[path] = f"Error fetching value: {e}"
 
-if __name__ == "__main__":
-    print("Final Metadata Output:")
-    print(metadata)
+# Convert dictionary to JSON and print
+metadata_json = json.dumps(metadata_dict, indent=4)
+print("Metadata in JSON format:")
+print(metadata_json)
+
+# Save to a file (optional)
+with open("metadata.json", "w") as json_file:
+    json_file.write(metadata_json)
