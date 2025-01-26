@@ -5,8 +5,12 @@ metadata_url = 'http://169.254.169.254/latest/'
 
 
 def expand_tree(url, arr):
-    print("url")
+    print("url")    
     print(url)
+    print("")
+    print("arr")
+    print(arr)
+    print("")
     output = {}
     for item in arr:
         new_url = url + item
@@ -29,6 +33,7 @@ def get_metadata():
     result = expand_tree(metadata_url, initial)
     print("result")
     print(result)
+    print("")
     return result
 
 
