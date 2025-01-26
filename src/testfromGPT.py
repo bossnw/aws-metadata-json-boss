@@ -43,7 +43,3 @@ for path in metadata_paths:
 metadata_json = json.dumps(metadata_dict, indent=4)
 print("Metadata in JSON format:")
 print(metadata_json)
-
-# Save to a file (optional)
-with open("metadata.json", "w") as json_file:
-    json_file.write(metadata_json)
