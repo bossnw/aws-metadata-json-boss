@@ -10,6 +10,8 @@ def expand_tree(url, arr):
         new_url = url + item
         r = requests.get(new_url)
         text = r.text
+        print("text")
+        print(text)
         if item[-1] == "/":
             list_of_values = r.text.splitlines()
             output[item[:-1]] = expand_tree(new_url, list_of_values)
