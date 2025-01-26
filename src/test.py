@@ -9,7 +9,7 @@ def getinstancemetadata():
         str: JSON-formatted string of the instance metadata.
     """
     baseurl = "http://169.254.169.254/latest/meta-data/"
-    metadata = fetch_metadata(base_url)
+    metadata = fetchmetadata(base_url)
     return json.dumps(metadata, indent=4)
 
 def fetchmetadata(url, metadata=None):
@@ -26,7 +26,7 @@ def fetchmetadata(url, metadata=None):
             item_url = f"{url}{item}"
             if item.endswith("/"):
                 metadata[item[:-1]] = {}
-                fetch_metadata(item_url, metadata[item[:-1]])
+                fetchmetadata(item_url, metadata[item[:-1]])
             else:
                 item_response = requests.get(item_url, timeout=1)
                 item_response.raise_for_status()
