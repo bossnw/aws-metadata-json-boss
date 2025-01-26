@@ -20,6 +20,9 @@ def expand_tree(url, arr):
         print(text)
         if item[-1] == "/":
             list_of_values = r.text.splitlines()
+            print("list_of_values")    
+            print(list_of_values)
+            print("")
             output[item[:-1]] = expand_tree(new_url, list_of_values)
         elif is_json(text):
             output[item] = json.loads(text)
