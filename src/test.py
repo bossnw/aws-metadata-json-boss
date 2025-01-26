@@ -36,6 +36,6 @@ def getinstancemetadata():
     metadata = fetch_metadata(base_url)
     return json.dumps(metadata, indent=4)
 
-if __name == "__main":
+if __name__ == "__main":
     metadata_json = get_instance_metadata()
     print(metadata_json)
