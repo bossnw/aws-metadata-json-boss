@@ -16,7 +16,13 @@ metadata_response = requests.get(metadata_url, headers=headers_for_metadata, tim
 metadata = metadata_response.text  # Extract metadata content
 
 metadata = json.loads(metadata)
-print(metadata)
+try:
+    parsed_metadata = json.loads(metadata)
+    print(parsed_metadata)
+except json.JSONDecodeError:
+    print("Metadata is not in JSON format. Output as plain text:")
+    print(metadata)
+# print(metadata)
 
 if __name__ == '__main__':
     
