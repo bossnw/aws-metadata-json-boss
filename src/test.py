@@ -37,6 +37,6 @@ def fetchmetadata(url, metadata=None):
     return metadata
 
 if __name__ == "__main__":
-    metadata_json = get_instance_metadata()
+    metadata_json = getinstancemetadata()
     print("start")
     print(metadata_json)
