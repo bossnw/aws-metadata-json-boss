@@ -32,7 +32,7 @@ def expand_tree(url, arr):
 
 
 def get_metadata():
-    initial = ["meta-data/"]
+    initial = ["meta-data"]
     result = expand_tree(metadata_url, initial)
     print("result")
     print(result)
