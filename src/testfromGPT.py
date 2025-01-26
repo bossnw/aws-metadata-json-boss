@@ -14,7 +14,9 @@ headers_for_metadata = {"X-aws-ec2-metadata-token": token}
 metadata_response = requests.get(metadata_url, headers=headers_for_metadata, timeout=1)
 metadata = metadata_response.text  # Extract metadata content
 
+metadata = json.loads(metadata)
 print(metadata)
 
 if __name__ == '__main__':
+    
     print(metadata)
