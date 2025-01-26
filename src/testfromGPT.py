@@ -43,3 +43,14 @@ for path in metadata_paths:
 metadata_json = json.dumps(metadata_dict, indent=4)
 print("Metadata in JSON format:")
 print(metadata_json)
+
+# Allow the user to input a key
+while True:
+    user_input = input("\nEnter a key to fetch its value (or type 'exit' to quit): ").strip()
+    if user_input.lower() == "exit":
+        print("Exiting program.")
+        break
+    elif user_input in metadata_dict:
+        print(f"Value for '{user_input}': {metadata_dict[user_input]}")
+    else:
+        print(f"Key '{user_input}' not found in metadata.")
