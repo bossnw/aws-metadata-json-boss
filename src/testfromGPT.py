@@ -1,4 +1,5 @@
 import requests
+import json
 
 # Step 1: Get the token
 token_url = "http://169.254.169.254/latest/api/token"
