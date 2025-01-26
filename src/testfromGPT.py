@@ -15,3 +15,6 @@ metadata_response = requests.get(metadata_url, headers=headers_for_metadata, tim
 metadata = metadata_response.text  # Extract metadata content
 
 print(metadata)
+
+if __name__ == '__main__':
+    print(metadata)
